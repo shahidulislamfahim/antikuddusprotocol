@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   TYPOGRAPHY
+   Primary application font: Proxima Nova, used everywhere — display
+   headings, body copy, and the mono-style uppercase labels alike.
+
+   Proxima Nova is a licensed commercial font, so it is not bundled or
+   pulled from a free CDN here. Wire up a licensed source (Adobe Fonts /
+   Fonts.com / self-hosted) via the <link> or @font-face slot below, or in
+   index.html — see the notes there. Until then, this stack falls back to
+   the closest high-quality system faces, so spacing/weight/layout are
+   correct today and the real face is picked up automatically once added.
+   ========================================================================= */
+
+/* --- OPTIONAL: self-hosted @font-face example ---------------------------
+   Uncomment and point at your own licensed .woff2 files in /public/fonts
+   if you are not using Adobe Fonts / Fonts.com instead.
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+----------------------------------------------------------------------- */
+
+:root {
+  --font-primary: "Proxima Nova", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-primary);
+}
+
+/* =========================================================================
+   SHARED KEYFRAME ANIMATIONS
+   Used by the logo mark (Login badge + Shell sidebar/topbar), the login
+   card entrance/shake, and the ambient background drift fields.
+   ========================================================================= */
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.03);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-7px);
+  }
+  40%,
+  60% {
+    transform: translateX(7px);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 40px);
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, -30px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* SOS Alert — light mode radar sweep + ripple pulses */
+@keyframes radarSweepLight {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes radarRippleLight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.55), 0 0 0 0 rgba(255, 176, 32, 0);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 0 26px rgba(255, 59, 48, 0), 0 0 0 40px rgba(255, 176, 32, 0);
+    opacity: 0;
+  }
+}
+@keyframes radarCorePulseLight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 22px rgba(255, 59, 48, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+  }
+}
+
+/* SOS Alert — dark mode holographic plasma ring + glitch scanline beacon */
+@keyframes plasmaRotateDark {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes plasmaPulseDark {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes scanlineGlitchDark {
+  0% {
+    background-position: 0 0;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    background-position: 0 12px;
+    opacity: 0.2;
+  }
+}
+@keyframes beaconGlowDark {
+  0%,
+  100% {
+    box-shadow: 0 0 22px 3px rgba(255, 107, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 34px 8px rgba(255, 107, 94, 0.67);
+  }
+}
+
+/* =========================================================================
+   iOS "CLEAR GLASS" SPEC
+   Reference values mirrored by useDrawerGlassStyle() in
+   src/components/Primitives.jsx for the SOS location dropdown and the
+   Strike Portal category dropdown. Kept here as the canonical spec plus a
+   reusable utility class if you want to apply it via className instead of
+   inline styles anywhere else in the app.
+   ========================================================================= */
+.clear-glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+.clear-glass--light {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.clear-glass--dark {
+  background: rgba(28, 30, 28, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Focus rings for form controls — color is applied inline per-theme where
+   the primary accent is known, this just ensures the outline is removed
+   in favor of the border-color transition used across the app. */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
