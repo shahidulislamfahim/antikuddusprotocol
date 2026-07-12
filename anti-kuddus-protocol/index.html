@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#6D28D9" />
+    <meta
+      name="description"
+      content="Anti-Kuddus Protocol — Section B's anonymous case-file system for tracking, reporting, and verifying classroom misconduct."
+    />
+    <title>Anti-Kuddus Protocol · Section B Case File Access</title>
+
+    <!--
+      PROXIMA NOVA — FONT LOADING NOTES
+      ==================================
+      Proxima Nova is a commercially licensed typeface (Mark Simonson Studio).
+      It is NOT available on Google Fonts, so it cannot be pulled from a free
+      CDN. To render true Proxima Nova, license it through one of:
+
+        1. Adobe Fonts (recommended if you already have a Creative Cloud
+           plan) — create a web project at fonts.adobe.com, then uncomment
+           the line below and replace YOUR_KIT_ID with your kit's ID:
+
+           <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css">
+
+        2. Fonts.com / Monotype — embed the <link> snippet provided by your
+           Monotype web-font project in place of the line above.
+
+        3. Self-hosted — if you own desktop/web licenses, drop the .woff2
+           files into /public/fonts and add an @font-face block to
+           src/index.css (a commented example is already there).
+
+      Until a kit/license is wired up, the app renders the high-quality
+      system fallback stack defined in tailwind.config.js and src/index.css:
+      'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Helvetica, Arial, sans-serif — so the layout, weights, and spacing all
+      look correct today and will pick up the real face automatically the
+      moment a licensed source is added above.
+    -->
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/YOUR_KIT_ID.css"> -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
