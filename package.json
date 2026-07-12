@@ -1,9 +1,0 @@
-{
-  "name": "hackathon26-workspace",
-  "private": true,
-  "scripts": {
-    "dev": "npm --prefix anti-kuddus-protocol run dev -- --host 0.0.0.0",
-    "build": "npm --prefix anti-kuddus-protocol run build",
-    "preview": "npm --prefix anti-kuddus-protocol run preview -- --host 0.0.0.0"
-  }
-}
